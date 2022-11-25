@@ -2,7 +2,6 @@ import { setErrors } from "actions/actionsNotes";
 import { auth } from "config/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import useForm from "hooks/useForm";
-import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
   FormContainer,
   InputContainer,
   InputText,
+  Label,
 } from "styles/Form/FormStyles";
 import validateCreateAccount from "validations/validateCreateAccount";
 
@@ -40,7 +40,9 @@ const CreateAccountForm = () => {
   }
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <h1>Crear Cuenta</h1>
       <InputContainer>
+        <Label>Nombre de usuario</Label>
         <InputText
           type="text"
           placeholder="Ingrese su username"
@@ -51,6 +53,7 @@ const CreateAccountForm = () => {
       </InputContainer>
       {errors.name && <Error>{errors.name}</Error>}
       <InputContainer>
+        <Label>Email</Label>
         <InputText
           type="text"
           placeholder="Ingrese su Email"
@@ -61,6 +64,7 @@ const CreateAccountForm = () => {
       </InputContainer>
       {errors.email && <Error>{errors.email}</Error>}
       <InputContainer>
+        <Label>Password</Label>
         <InputText
           type="password"
           placeholder="Ingrese su password"

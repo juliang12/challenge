@@ -1,3 +1,3 @@
 export * from './Login';
-export * from './NoteDetails';
+export * from './NoteDetailsPage';
 export * from './Notes';

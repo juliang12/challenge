@@ -1,5 +1,7 @@
+import { setNoteToEdit } from 'actions/actionsNotes'
 import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
 
 interface Errors{
     name?: string
@@ -11,6 +13,7 @@ interface Errors{
 }
 
 const useForm = (initialState:any, validate:any, fn:any) => {
+    const dispatch = useDispatch();
     const [values, setValues] = useState(initialState)
     const [errors, setErrors] = useState<Errors>({})
     const [submit, setSubmit] = useState(false)
@@ -22,10 +25,10 @@ const useForm = (initialState:any, validate:any, fn:any) => {
         if(noErrors){
             fn()   
         }
-
         setSubmit(false)
 
     }
+    dispatch(setNoteToEdit(null))
     }, [errors])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | any )=>{
@@ -46,7 +49,9 @@ const useForm = (initialState:any, validate:any, fn:any) => {
     }
 
     const reset = ()=>{
+      
         setValues(initialState)
+        
     }
     
   return {

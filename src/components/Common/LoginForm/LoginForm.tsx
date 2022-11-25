@@ -2,7 +2,6 @@ import { login } from "actions/actionsNotes";
 import { auth } from "config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { useAuth, useForm } from "hooks";
-import { NoteState } from "models/interface/state.models";
 import { RootState } from "models/types/state.types";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import {
   FormContainer,
   InputContainer,
   InputText,
+  Label,
 } from "styles/Form/FormStyles";
 import validateLogin from "validations/validateLogin";
 
@@ -52,7 +52,9 @@ const LoginForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <h1>Login</h1>
       <InputContainer>
+        <Label>Email</Label>
         <InputText
           type="text"
           placeholder="Ingrese su Email"
@@ -63,6 +65,7 @@ const LoginForm = () => {
       </InputContainer>
       {errors.email && <Error>{errors.email}</Error>}
       <InputContainer>
+        <Label>Password</Label>
         <InputText
           type="password"
           placeholder="Ingrese su password"

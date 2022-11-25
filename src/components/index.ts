@@ -2,6 +2,7 @@ export * from './Common/CreateAccount';
 export * from './Common/CreateNote';
 export * from './Common/Loader';
 export * from './Common/LoginForm';
+export * from './Common/NoteDetails';
 export * from './Common/NoteList';
 export * from './Common/NoteTablesRow';
 export * from './Common/Search';

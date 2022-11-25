@@ -2,9 +2,12 @@ import { useFirestore, useForm } from "hooks";
 import { RootState } from "models/types/state.types";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import {
   Button,
+  ContainerButton,
   Error,
   FormContainer,
   InputContainer,
@@ -21,25 +24,18 @@ const INITIAL_FORM = {
   id: null,
 };
 const CreateNote = () => {
-  const navigate = useNavigate();
   const state = useSelector((state: RootState) => state);
   const { noteToEdit } = state.notes;
   const { handleNote, updateNote } = useFirestore();
+  const navigate = useNavigate();
 
-  const { values, errors, setValues, handleChange, handleSubmit, reset } =
-    useForm(INITIAL_FORM, validateNotes, createNote);
+  const { values, errors, setValues, handleChange, handleSubmit } = useForm(
+    INITIAL_FORM,
+    validateNotes,
+    createNote
+  );
 
   const { titulo, tipo, descripcion } = values;
-
-  async function createNote() {
-    if (!noteToEdit) {
-      handleNote(values);
-    } else {
-      updateNote(values);
-    }
-    navigate("/");
-    reset();
-  }
 
   useEffect(() => {
     if (noteToEdit) {
@@ -49,9 +45,27 @@ const CreateNote = () => {
     }
   }, [noteToEdit, setValues]);
 
+  async function createNote() {
+    if (values.id === null) {
+      handleNote(values);
+    } else {
+      updateNote(values);
+    }
+
+    navigate("/");
+  }
+
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <h1>Crea una Nota</h1>
+      <ContainerButton>
+        <Link to={"/"}>
+          <Button>
+            <BiArrowBack style={{ fontSize: "20px" }} />
+          </Button>
+        </Link>
+      </ContainerButton>
+      {noteToEdit ? <h1>Editar una nota</h1> : <h1>Crear una Nota</h1>}
+
       <InputContainer>
         <InputText
           type="text"
@@ -81,8 +95,11 @@ const CreateNote = () => {
         />
       </InputContainer>
       {errors.descripcion && <Error>{descripcion.titulo}</Error>}
-
-      <Button mode="true">Crear Nota</Button>
+      {noteToEdit ? (
+        <Button mode="true">Editar Nota</Button>
+      ) : (
+        <Button mode="true">Crear Nota</Button>
+      )}
     </FormContainer>
   );
 };

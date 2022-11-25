@@ -23,6 +23,7 @@ const NoteDetails = () => {
 
   useEffect(() => {
     const filtered = notes.filter((note: any) => note.titulo === id);
+    console.log(filtered);
     dispatch(getDetails(filtered));
   }, [id, notes]);
 

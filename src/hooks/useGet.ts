@@ -1,4 +1,4 @@
-import { getNotes } from 'actions/actionsNotes';
+import { getNotes, setErrors } from 'actions/actionsNotes';
 import { ref } from 'config/firebaseConfig';
 import { getDocs, orderBy, query } from 'firebase/firestore';
 import { useState } from 'react'
@@ -14,7 +14,7 @@ const useGet = () => {
           const data = await getDocs(query(ref, orderBy("fecha", "desc")));
           dispatch(getNotes(data.docs));
         } catch (error: any) {
-          console.log(error.message);
+          dispatch(setErrors(error.message));
         }
         setLoading(false)
       };

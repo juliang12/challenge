@@ -9,15 +9,13 @@ import { addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import useGet from "hooks/useGet";
 import { Notes } from "models/interface/notesInterface";
 import { RootState } from "models/types/state.types";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 
 const useFirestore = () => {
-  const navigate = useNavigate();
   const { getData } = useGet();
   const state = useSelector((state: RootState) => state);
-  const { notes, noteToEdit } = state.notes;
+  const { notes} = state.notes;
   const dispatch = useDispatch();
 
   const handleNote = async (notes: Notes) => {
@@ -53,12 +51,11 @@ const useFirestore = () => {
     try {
       if (exist) {
         const newNote = await doc(ref, note.id);
-        navigate("/create-note");
-
-        dispatch(setNoteToEdit(exist));
-
         await updateDoc(newNote, note);
+        dispatch(setNoteToEdit(exist));
+      
       }
+
     } catch (error: any) {
       dispatch(setErrors(error.message));
     }

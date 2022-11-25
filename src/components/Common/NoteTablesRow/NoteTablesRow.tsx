@@ -30,9 +30,11 @@ const NoteTablesRow = ({
         <Icon>
           <TiDelete onClick={() => deleteNote(id)} />
         </Icon>
-        <Icon>
-          <TiEdit onClick={() => updateNote(note)} />
-        </Icon>
+        <Link to="/create-note">
+          <Icon>
+            <TiEdit onClick={() => updateNote(note)} />
+          </Icon>
+        </Link>
       </HeadContainer>
       <HeadContainer>
         <Link style={{ textDecoration: "none" }} to={`/${titulo}`}>

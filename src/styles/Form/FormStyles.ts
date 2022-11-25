@@ -8,8 +8,10 @@ export const InputContainer = styled.div`
 width: 100%;
 max-width: 80%;
 display: flex;
+flex-direction: column;
+align-items: center;
 justify-content: center;
-margin: 20px 0;
+margin: 10px 0;
 `;
 
 export const FormContainer = styled.form`
@@ -47,7 +49,7 @@ transition: ease-in-out .1s;
 
 export const Error = styled.p`
 width: 100%;
-max-width: 500px;
+max-width: 300px;
 height: 40px;
 display: flex;
 align-items: center;
@@ -74,4 +76,18 @@ resize: none;
 width: 300px;
 height: 70px;
 border-radius: 5px;
+`
+
+export const Label = styled.label`
+width: 300px;
+font-size: 18px;
+margin: 8px 0;
+`
+
+export const ContainerButton = styled.div`
+width: 100%;
+max-width: 1240px;
+display: flex;
+justify-content: start;
+margin: 0 auto;
 `

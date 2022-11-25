@@ -81,6 +81,12 @@ export const Icon = styled.div`
 font-size: 25px;
 cursor: pointer;
 transition: ease-in 0.3s;
+text-decoration: none;
+color: #fff;
+
+& a{
+text-decoration: none;
+}
 
 &:hover{
     color: grey;

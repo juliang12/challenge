@@ -39,7 +39,6 @@ const NoteList = ({ search, select }: any) => {
     getData();
   }, []);
 
-  console.log(notes);
   return (
     <>
       <div style={{ display: "flex", gap: "10px" }}>

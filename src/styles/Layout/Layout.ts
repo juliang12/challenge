@@ -8,7 +8,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-margin: 0 auto;
+margin: 1rem auto;
 `
 
 export const Navbar = styled.nav`

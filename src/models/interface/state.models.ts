@@ -1,4 +1,4 @@
-import { Details, Notes, NotesList } from "models/interface/notesInterface";
+import { Details, Notes} from "models/interface/notesInterface";
 
 
 export interface NoteState{
@@ -6,5 +6,5 @@ export interface NoteState{
     notes: Notes[] 
     detail: Details
     error: Object | any
-    noteToEdit: any 
+    noteToEdit: Notes | null 
 }
