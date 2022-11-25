@@ -10,17 +10,37 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@": [
+        "./src"
+      ],
+      "components/*": [
+        "components/*"
+      ],
+      "Common/*": [
+        "common/*"
+      ],
+      "models/*": [
+        "models/*"
+      ]
+    },
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "commonjs",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
-    "src"
+    "./src"
   ]
 }
